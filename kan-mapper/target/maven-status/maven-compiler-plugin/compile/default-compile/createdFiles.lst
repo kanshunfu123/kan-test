@@ -1,0 +1,7 @@
+com\kan\mana\mapper\dao\DictionaryDataDAO.class
+com\kan\mana\mapper\mapper\DictionaryDataDOMapper.class
+com\kan\mana\mapper\dataobject\DictionaryDataDO.class
+com\kan\mana\mapper\mapper\DictionaryMapper.class
+com\kan\mana\mapper\config\DataSourceConfig.class
+com\kan\mana\mapper\config\HikariDattaSourceConfig.class
+com\kan\mana\mapper\resultmap\DictionaryTreeResult.class

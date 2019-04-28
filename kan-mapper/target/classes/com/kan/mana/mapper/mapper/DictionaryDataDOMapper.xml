@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kan.mana.mapper.mapper.DictionaryDataDOMapper">
+    <!-- 自动生成,请修改 SYS_DICTIONARY_DATA.xml -->
+    <resultMap id="BaseResultMap"  type="com.kan.mana.mapper.dataobject.DictionaryDataDO">
+            <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+            <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" javaType="Long"/>
+            <result column="CODE_VALUE" property="codeValue" jdbcType="BIGINT" javaType="Long"/>
+            <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+            <result column="CODE_NAME" property="codeName" jdbcType="VARCHAR" javaType="String"/>
+            <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+            <result column="CODE_LEVEL" property="codeLevel" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_DICTIONARY_UUID" property="sysDictionaryUuid" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_DICTIONARY_REMARK" property="sysDictionaryRemark" jdbcType="VARCHAR" javaType="String"/>
+            <result column="SYS_DICTIONARY_SEQ" property="sysDictionarySeq" jdbcType="INTEGER" javaType="Integer"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        ID,PARENT_ID,CODE_VALUE,DEL_FLAG,CODE_NAME,CREATE_BY,UPDATE_BY,CODE_LEVEL,SYS_DICTIONARY_UUID,SYS_DICTIONARY_REMARK,SYS_DICTIONARY_SEQ,CREATE_TIME,UPDATE_TIME
+    </sql>
+
+
+        <!--插入表:SYS_DICTIONARY_DATA-->
+        <insert id="insert" >
+                    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+                SELECT
+                LAST_INSERT_ID()
+            </selectKey>
+        INSERT INTO SYS_DICTIONARY_DATA(
+            
+            PARENT_ID
+            ,CODE_VALUE
+            ,DEL_FLAG
+            ,CODE_NAME
+            ,CREATE_BY
+            ,UPDATE_BY
+            ,CODE_LEVEL
+            ,SYS_DICTIONARY_UUID
+            ,SYS_DICTIONARY_REMARK
+            ,SYS_DICTIONARY_SEQ
+            ,CREATE_TIME
+            ,UPDATE_TIME
+        )VALUES(
+            
+            #{parentId,jdbcType=BIGINT}
+            ,#{codeValue,jdbcType=BIGINT}
+            ,#{delFlag,jdbcType=CHAR}
+            ,#{codeName,jdbcType=VARCHAR}
+            ,#{createBy,jdbcType=VARCHAR}
+            ,#{updateBy,jdbcType=VARCHAR}
+            ,#{codeLevel,jdbcType=VARCHAR}
+            ,#{sysDictionaryUuid,jdbcType=VARCHAR}
+            ,#{sysDictionaryRemark,jdbcType=VARCHAR}
+            ,#{sysDictionarySeq,jdbcType=INTEGER}
+            ,#{createTime,jdbcType=TIMESTAMP}
+            ,#{updateTime,jdbcType=TIMESTAMP}
+        )
+        </insert>
+
+        <!--更新表:SYS_DICTIONARY_DATA-->
+        <update id="update" >
+                    UPDATE /*MS-SYS-DICTIONARY-DATA-UPDATE*/ SYS_DICTIONARY_DATA
+            SET
+                    PARENT_ID       = #{parentId,jdbcType=BIGINT}
+                    ,CODE_VALUE      = #{codeValue,jdbcType=BIGINT}
+                    ,DEL_FLAG        = #{delFlag,jdbcType=CHAR}
+                    ,CODE_NAME       = #{codeName,jdbcType=VARCHAR}
+                    ,CREATE_BY       = #{createBy,jdbcType=VARCHAR}
+                    ,UPDATE_BY       = #{updateBy,jdbcType=VARCHAR}
+                    ,CODE_LEVEL      = #{codeLevel,jdbcType=VARCHAR}
+                    ,SYS_DICTIONARY_UUID = #{sysDictionaryUuid,jdbcType=VARCHAR}
+                    ,SYS_DICTIONARY_REMARK = #{sysDictionaryRemark,jdbcType=VARCHAR}
+                    ,SYS_DICTIONARY_SEQ = #{sysDictionarySeq,jdbcType=INTEGER}
+                    ,CREATE_TIME     = #{createTime,jdbcType=TIMESTAMP}
+                    ,UPDATE_TIME     = #{updateTime,jdbcType=TIMESTAMP}
+            WHERE
+                ID              = #{id,jdbcType=BIGINT}
+        </update>
+
+        <!--根据主键删除数据:SYS_DICTIONARY_DATA-->
+        <delete id="deleteById" >
+                    DELETE /*MS-SYS-DICTIONARY-DATA-DELETEBYID*/ FROM SYS_DICTIONARY_DATA
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </delete>
+
+        <!--根据主键获取数据:SYS_DICTIONARY_DATA-->
+        <select id="getById" resultMap="BaseResultMap">
+                    SELECT /*MS-SYS-DICTIONARY-DATA-GETBYID*/  <include refid="Base_Column_List" /> FROM SYS_DICTIONARY_DATA
+            WHERE
+                ID = #{id,jdbcType=BIGINT}
+        </select>
+</mapper>

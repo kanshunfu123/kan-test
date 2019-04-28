@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kan.mana.mapper.mapper.DictionaryMapper">
+    <resultMap id="BaseResultMap"  type="com.kan.mana.mapper.dataobject.DictionaryDataDO">
+        <id column="ID" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="CHAR" javaType="String"/>
+        <result column="CODE_NAME" property="codeName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" javaType="String"/>
+        <result column="CODE_LEVEL" property="codeLevel" jdbcType="VARCHAR" javaType="String"/>
+        <result column="SYS_DICTIONARY_UUID" property="sysDictionaryUuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="SYS_DICTIONARY_REMARK" property="sysDictionaryRemark" jdbcType="VARCHAR" javaType="String"/>
+        <result column="SYS_DICTIONARY_SEQ" property="sysDictionarySeq" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+    <select id="DictionaryTree" resultMap="dictionaryTreeResult">
+          SELECT del_flag, id,code_name,sys_dictionary_uuid,code_level,sys_dictionary_seq,parent_id,code_value
+        FROM sys_dictionary_data
+
+    </select>
+    <resultMap id="dictionaryTreeResult"  type="com.kan.mana.mapper.resultmap.DictionaryTreeResult">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" javaType="String"/>
+        <result column="code_name" property="codeName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="code_level" property="codeLevel" jdbcType="VARCHAR" javaType="String"/>
+        <result column="sys_dictionary_uuid" property="sysDictionaryUuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="sys_dictionary_seq" property="sysDictionarySeq" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="code_value" property="codeValue" jdbcType="BIGINT" javaType="Long"/>
+    </resultMap>
+   <!-- <select id="dictionaryDataDO" resultMap="getDictionaryInfoByUuid" >
+
+        SELECT
+       id, sys_dictionary_uuid, code_value, code_name, parent_id, code_level, sys_dictionary_seq,
+    sys_dictionary_remark, del_flag, create_by, create_time, update_time, update_by
+        FROM sys_dictionary_data
+        WHERE sys_dictionary_uuid=#{sysDictionaryUuid,jdbcType=VARCHAR} AND del_flag=0
+    </select>-->
+    <resultMap id="getDictionaryInfoByUuid" type="com.kan.mana.mapper.dataobject.DictionaryDataDO" >
+        <id column="id" property="id" jdbcType="BIGINT" javaType="Long"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" javaType="Long"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" javaType="String"/>
+        <result column="sys_dictionary_uuid" property="sysDictionaryUuid" jdbcType="VARCHAR" javaType="String"/>
+        <result column="code_level" property="codeLevel" jdbcType="VARCHAR" javaType="String"/>
+        <result column="sys_dictionary_seq" property="sysDictionarySeq" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="code_name" property="codeName" jdbcType="VARCHAR" javaType="String"/>
+        <result column="code_value" property="codeValue" jdbcType="BIGINT" javaType="Long"/>
+    </resultMap>
+
+
+
+</mapper>
